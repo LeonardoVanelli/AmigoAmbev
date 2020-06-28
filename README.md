@@ -117,11 +117,18 @@ Sapper is in early development, and may have the odd rough edge here and there. 
 
 # Using project
 
-Install docker
-execute commands in cmd to create the containers
+* Install docker
+* Execute commands in cmd to create the containers:
+```bash
 docker run --name mongo -p 27017:27017 -d mongo
+```
+
+```bash
 docker run --name redis -p6379:6379 -d -t redis:alpine
+```
 
-change .env with yours settings or get .env file in Discord
-
-start project "npm run dev" or "yarn dev"
+```bash
+docker run --name postgres -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_USER=MyUser -e POSTGRES_DB=MyDbName -p 5432:5432 -d postgres
+```
+* Change .env with yours settings or get .env file in Discord
+* Start project "npm run dev" or "yarn dev"
