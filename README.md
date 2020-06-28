@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # sapper-template
 
 The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
@@ -109,3 +110,6 @@ npm install -D @sveltejs/svelte-virtual-list
 ## Bugs and feedback
 
 Sapper is in early development, and may have the odd rough edge here and there. Please be vocal over on the [Sapper issue tracker](https://github.com/sveltejs/sapper/issues).
+=======
+# AmigoAmbev
+>>>>>>> c03256df5accb128c451ea49e4de8eb549e7eff3
