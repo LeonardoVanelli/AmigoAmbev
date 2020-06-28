@@ -113,3 +113,15 @@ Sapper is in early development, and may have the odd rough edge here and there. 
 =======
 # AmigoAmbev
 >>>>>>> c03256df5accb128c451ea49e4de8eb549e7eff3
+
+
+# Using project
+
+Install docker
+execute commands in cmd to create the containers
+docker run --name mongo -p 27017:27017 -d mongo
+docker run --name redis -p6379:6379 -d -t redis:alpine
+
+change .env with yours settings or get .env file in Discord
+
+start project "npm run dev" or "yarn dev"
