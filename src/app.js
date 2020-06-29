@@ -31,10 +31,8 @@ class App {
   }
 
   middlaWare() {
-    const dev = process.env.NODE_ENV === 'development';
-
-    this.server.use(compression({ threshold: 0 }))
-    this.server.use(sirv('static', { dev: process.env.NODE_ENV }))
+    this.server.use(compression({ threshold: 0 }));
+    this.server.use(sirv('static', { dev: process.env.NODE_ENV }));
     this.server.use(Sentry.Handlers.requestHandler());
     this.server.use(cors());
     this.server.use(helmet());
@@ -62,7 +60,7 @@ class App {
 
   routes() {
     this.server.use(routes);
-    this.server.use(Sentry.Handlers.errorHandler());    
+    this.server.use(Sentry.Handlers.errorHandler());
   }
 
   exceptionHandler() {

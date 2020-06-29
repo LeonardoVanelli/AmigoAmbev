@@ -33,7 +33,7 @@ const bruteForce = new Brute(bruteStore);
 routes.post('/api/user', ValidateUserStore, UserController.store);
 routes.post('/api/session', bruteForce.prevent, SessionController.store);
 
-routes.use('/api', authMiddleware)
+routes.use('/api', authMiddleware);
 routes.put('/api/user', UserController.update);
 
 routes.post('/api/files', upload.single('file'), FileController.store);
@@ -47,15 +47,16 @@ routes.post(
 );
 routes.get('/api/appointments', AppointmentController.index);
 routes.delete('/api/appointments/:id', AppointmentController.delete);
-routes.get('/api/appappointments/:providerId/avaliable', AvaliableController.index);
+routes.get(
+  '/api/appappointments/:providerId/avaliable',
+  AvaliableController.index
+);
 
 routes.get('/api/schedules', ScheduleController.index);
 
 routes.get('/api/notifications', NotificationController.index);
 routes.put('/api/notifications/:id', NotificationController.update);
 
-
-
-routes.use(sapper.middleware())
+routes.use(sapper.middleware());
 
 export default routes;
