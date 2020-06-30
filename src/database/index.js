@@ -8,8 +8,17 @@ import Appointment from '../app/models/Appointment';
 import Bebida from '../app/models/Bebida';
 import Endereco from '../app/models/Endereco';
 import Estabelecimento from '../app/models/Estabelecimento';
+import EstabelecimentoBebidas from '../app/models/EstabelecimentoBebidas';
 
-const Models = [User, File, Appointment, Bebida, Endereco, Estabelecimento];
+const Models = [
+  User,
+  File,
+  Appointment,
+  Bebida,
+  Endereco,
+  Estabelecimento,
+  EstabelecimentoBebidas,
+];
 
 class Database {
   constructor() {

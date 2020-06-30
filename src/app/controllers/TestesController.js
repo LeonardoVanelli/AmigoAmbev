@@ -1,13 +1,12 @@
-import Teste from '../models/Estabelecimento';
+import Teste from '../models/EstabelecimentoBebidas';
 
 class TesteController {
   async store(req, res) {
     try {
       const teste = await Teste.create({
-        nome: 'Bar',
-        telefone: '4799119498',
-        endereco_id: 1,
-        responsavel_id: 1,
+        valor: 29.9,
+        estabelecimento_id: 1,
+        bebida_id: 1,
       });
 
       res.send(teste);
