@@ -29,6 +29,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      endereco_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'enderecos', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+      },
       password_hash: {
         type: Sequelize.STRING,
         allowNull: false,
