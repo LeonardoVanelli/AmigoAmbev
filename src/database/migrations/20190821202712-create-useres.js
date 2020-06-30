@@ -9,20 +9,28 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true,
       },
-      password_hash: {
+      telefone: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      pontos: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+        allowNull: false,
+      },
+      hash_code: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      provider: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+      password_hash: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {

@@ -1,5 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 import bcrypt from 'bcryptjs';
+import generateHash from 'random-hash';
 
 class User extends Model {
   static init(sequelize) {
@@ -7,9 +8,11 @@ class User extends Model {
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
+        telefone: Sequelize.STRING,
+        pontos: Sequelize.INTEGER,
+        hash_code: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
-        provider: Sequelize.BOOLEAN,
       },
       {
         sequelize,
@@ -20,6 +23,12 @@ class User extends Model {
       if (user.password)
         // eslint-disable-next-line no-param-reassign
         user.password_hash = await bcrypt.hash(user.password, 8);
+      // eslint-disable-next-line no-param-reassign
+      user.hash_code = generateHash({
+        length: 8,
+        charset:
+          'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_',
+      });
     });
     return this;
   }

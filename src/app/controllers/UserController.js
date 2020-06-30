@@ -4,20 +4,22 @@ import Cache from '../../lib/Cache';
 
 class UserController {
   async store(req, res) {
+    try {
+      const existentUser = await User.findOne({
+        where: { email: req.body.email },
+      });
 
-    const existentUser = await User.findOne({
-      where: { email: req.body.email },
-    });      
-    
-    if (existentUser)
-    {
-      return res.status(400).json({ error: 'email is already in use' });
+      if (existentUser) {
+        return res.status(400).json({ error: 'email is already in use' });
+      }
+      const { id, name, email, provider } = await User.create(req.body);
+
+      if (provider) Cache.invalidade('providers');
+
+      return res.json({ id, name, email, provider });
+    } catch (error) {
+      return res.status(500).send(error);
     }
-    const { id, name, email, provider } = await User.create(req.body);
-    
-    if (provider) Cache.invalidade('providers');
-
-    return res.json({ id, name, email, provider });
   }
 
   async update(req, res) {
