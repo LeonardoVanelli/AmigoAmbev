@@ -15,6 +15,8 @@ import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 import AvaliableController from './app/controllers/AvaliableController';
 
+import TesteController from './app/controllers/TestesController';
+
 import ValidateUserStore from './app/Validators/UserStore';
 import ValidateAppointmentStore from './app/Validators/AppointmentStore';
 
@@ -56,6 +58,8 @@ routes.get('/api/schedules', ScheduleController.index);
 
 routes.get('/api/notifications', NotificationController.index);
 routes.put('/api/notifications/:id', NotificationController.update);
+
+routes.post('/api/testes', TesteController.store);
 
 routes.use(sapper.middleware());
 
