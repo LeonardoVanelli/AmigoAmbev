@@ -1,10 +1,10 @@
 import Sequelize, { Model } from 'sequelize';
 
-class EstabelecimentoBebidas extends Model {
+class Atividade extends Model {
   static init(sequelize) {
     super.init(
       {
-        valor: Sequelize.REAL,
+        created_at: Sequelize.DATE,
       },
       {
         sequelize,
@@ -23,7 +23,15 @@ class EstabelecimentoBebidas extends Model {
       foreignKey: 'bebida_id',
       as: 'bebida',
     });
+    this.belongsTo(models.User, {
+      foreignKey: 'usuario_id',
+      as: 'usuario',
+    });
+    this.belongsTo(models.TiposProcesso, {
+      foreignKey: 'tipo_processo_id',
+      as: 'tipo_processo',
+    });
   }
 }
 
-export default EstabelecimentoBebidas;
+export default Atividade;

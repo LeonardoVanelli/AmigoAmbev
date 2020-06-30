@@ -9,15 +9,19 @@ import Bebida from '../app/models/Bebida';
 import Endereco from '../app/models/Endereco';
 import Estabelecimento from '../app/models/Estabelecimento';
 import EstabelecimentoBebidas from '../app/models/EstabelecimentoBebidas';
+import TiposProcesso from '../app/models/TiposProcesso';
+import Atividade from '../app/models/Atividade';
 
 const Models = [
-  User,
-  File,
   Appointment,
+  Atividade,
   Bebida,
   Endereco,
   Estabelecimento,
   EstabelecimentoBebidas,
+  File,
+  TiposProcesso,
+  User,
 ];
 
 class Database {

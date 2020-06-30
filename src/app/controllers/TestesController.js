@@ -1,18 +1,28 @@
-import Teste from '../models/EstabelecimentoBebidas';
+import Atividade from '../models/Atividade';
+import TipoProcesso from '../models/TiposProcesso';
 
 class TesteController {
   async store(req, res) {
     try {
-      const teste = await Teste.create({
-        valor: 29.9,
-        estabelecimento_id: 1,
-        bebida_id: 1,
+      const tipoProcesso = await TipoProcesso.create({
+        nome: 'Cadastro bebida mercado',
+        descricao: 'Ao comprar bebida em um mercado',
+        validado: true,
       });
 
-      res.send(teste);
+      const atividade = await Atividade.create({
+        tipo_processo_id: 1,
+        estamelecimento_id: 1,
+        bebida_id: 1,
+        usuario_id: 2,
+      });
+
+      res.send({ tipoProcesso, atividade });
     } catch (error) {
       console.log(error);
-      res.status(500).send({ message: 'Algo deu errado!', error });
+      res
+        .status(500)
+        .send({ message: 'Algo deu errado!', error: error.message });
     }
   }
 }
