@@ -11,6 +11,7 @@ import Estabelecimento from '../app/models/Estabelecimento';
 import EstabelecimentoBebidas from '../app/models/EstabelecimentoBebidas';
 import TiposProcesso from '../app/models/TiposProcesso';
 import Atividade from '../app/models/Atividade';
+import Codigo from '../app/models/Codigo';
 
 const Models = [
   Appointment,
@@ -22,6 +23,7 @@ const Models = [
   File,
   TiposProcesso,
   User,
+  Codigo,
 ];
 
 class Database {
