@@ -14,6 +14,7 @@ import AppointmentController from './app/controllers/AppointmentController';
 import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 import AvaliableController from './app/controllers/AvaliableController';
+import BebidaController from './app/controllers/BebidaController';
 
 import TesteController from './app/controllers/TestesController';
 
@@ -53,6 +54,8 @@ routes.get(
   '/api/appappointments/:providerId/avaliable',
   AvaliableController.index
 );
+
+routes.get('/api/bebida', BebidaController.Show);
 
 routes.get('/api/schedules', ScheduleController.index);
 
