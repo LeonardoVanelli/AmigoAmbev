@@ -25,6 +25,7 @@ import ValidateAppointmentStore from './app/Validators/AppointmentStore';
 import ValidateCodigoStore from './app/Validators/CodigoStore';
 
 import authMiddleware from './app/middleware/auth';
+import PostagemController from './app/controllers/PostagemController';
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -68,6 +69,8 @@ routes.put('/api/notifications/:id', NotificationController.update);
 routes.post('/api/testes', TesteController.store);
 
 routes.post('/api/codigos', ValidateCodigoStore, CodigoController.store);
+
+routes.get('/api/Postagens', PostagemController.Show);
 
 routes.use(sapper.middleware());
 
