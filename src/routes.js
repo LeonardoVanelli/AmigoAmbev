@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import Brute from 'express-brute';
 import BruteRedis from 'express-brute-redis';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as sapper from '@sapper/server';
 
 import multerConfig from './config/multer';
@@ -14,11 +15,13 @@ import AppointmentController from './app/controllers/AppointmentController';
 import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 import AvaliableController from './app/controllers/AvaliableController';
+import CodigoController from './app/controllers/CodigoController';
 
 import TesteController from './app/controllers/TestesController';
 
 import ValidateUserStore from './app/Validators/UserStore';
 import ValidateAppointmentStore from './app/Validators/AppointmentStore';
+import ValidateCodigoStore from './app/Validators/CodigoStore';
 
 import authMiddleware from './app/middleware/auth';
 
@@ -60,6 +63,8 @@ routes.get('/api/notifications', NotificationController.index);
 routes.put('/api/notifications/:id', NotificationController.update);
 
 routes.post('/api/testes', TesteController.store);
+
+routes.post('/api/codigos', ValidateCodigoStore, CodigoController.store);
 
 routes.use(sapper.middleware());
 

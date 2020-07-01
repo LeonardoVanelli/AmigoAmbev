@@ -1,6 +1,7 @@
 import User from '../models/User';
 import File from '../models/File';
-import Cache from '../../lib/Cache';
+
+import StoreSessionService from '../services/StoreSessionService';
 
 class UserController {
   async store(req, res) {
@@ -12,11 +13,14 @@ class UserController {
       if (existentUser) {
         return res.status(400).json({ error: 'email is already in use' });
       }
-      const { id, name, email, provider } = await User.create(req.body);
+      const { email } = await User.create(req.body);
 
-      if (provider) Cache.invalidade('providers');
+      const session = await StoreSessionService.run({
+        email,
+        password: req.body.password,
+      });
 
-      return res.json({ id, name, email, provider });
+      return res.json(session);
     } catch (error) {
       return res.status(500).send(error);
     }
