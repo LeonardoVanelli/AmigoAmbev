@@ -12,6 +12,10 @@ import EstabelecimentoBebidas from '../app/models/EstabelecimentoBebidas';
 import TiposProcesso from '../app/models/TiposProcesso';
 import Atividade from '../app/models/Atividade';
 import Codigo from '../app/models/Codigo';
+import TipoPostagem from '../app/models/TipoPostagem';
+import Postagens from '../app/models/Postagens';
+import Curtidas from '../app/models/Curtidas';
+import Comentarios from '../app/models/Comentarios';
 
 const Models = [
   Appointment,
@@ -24,6 +28,10 @@ const Models = [
   TiposProcesso,
   User,
   Codigo,
+  TipoPostagem,
+  Postagens,
+  Curtidas,
+  Comentarios,
 ];
 
 class Database {

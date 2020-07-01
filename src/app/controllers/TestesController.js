@@ -1,10 +1,13 @@
-import Codigo from '../models/Codigo';
+import Comentarios from '../models/Comentarios';
 
 class TesteController {
   async store(req, res) {
     try {
-      const tipoProcesso = await Codigo.create({
-        bebida_id: 1,
+      const tipoProcesso = await Comentarios.create({
+        postagem_id: 1,
+        user_id: 1,
+        data_hora: new Date(),
+        texto: 'Comentario de teste de postagem',
       });
 
       res.send({ tipoProcesso });
