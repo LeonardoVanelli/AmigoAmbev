@@ -15,11 +15,8 @@ import AppointmentController from './app/controllers/AppointmentController';
 import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 import AvaliableController from './app/controllers/AvaliableController';
-<<<<<<< HEAD
 import CodigoController from './app/controllers/CodigoController';
-=======
 import BebidaController from './app/controllers/BebidaController';
->>>>>>> 4c169a7bac23b6769f200712c167ffb4e8345220
 
 import TesteController from './app/controllers/TestesController';
 
