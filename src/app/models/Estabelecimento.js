@@ -1,18 +1,14 @@
 import Sequelize, { Model } from 'sequelize';
-import bcrypt from 'bcryptjs';
 import generateHash from 'random-hash';
 
-class User extends Model {
+class Estabelecimento extends Model {
   static init(sequelize) {
     super.init(
       {
-        name: Sequelize.STRING,
-        email: Sequelize.STRING,
+        nome: Sequelize.STRING,
         telefone: Sequelize.STRING,
         pontos: Sequelize.INTEGER,
         hash_code: Sequelize.STRING,
-        password: Sequelize.VIRTUAL,
-        password_hash: Sequelize.STRING,
       },
       {
         sequelize,
@@ -20,9 +16,6 @@ class User extends Model {
     );
 
     this.addHook('beforeSave', async user => {
-      if (user.password)
-        // eslint-disable-next-line no-param-reassign
-        user.password_hash = await bcrypt.hash(user.password, 8);
       // eslint-disable-next-line no-param-reassign
       user.hash_code = generateHash({
         length: 8,
@@ -34,16 +27,15 @@ class User extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
     this.belongsTo(models.Endereco, {
       foreignKey: 'endereco_id',
       as: 'endereco',
     });
-  }
-
-  checkPassword(password) {
-    return bcrypt.compare(password, this.password_hash);
+    this.belongsTo(models.User, {
+      foreignKey: 'responsavel_id',
+      as: 'responsavel',
+    });
   }
 }
 
-export default User;
+export default Estabelecimento;
