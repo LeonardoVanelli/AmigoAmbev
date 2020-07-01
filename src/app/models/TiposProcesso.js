@@ -4,6 +4,7 @@ class TiposProcesso extends Model {
   static init(sequelize) {
     super.init(
       {
+        processo_id: Sequelize.INTEGER,
         nome: Sequelize.STRING,
         descricao: Sequelize.STRING,
         validado: Sequelize.BOOLEAN,

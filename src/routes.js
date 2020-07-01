@@ -17,6 +17,7 @@ import NotificationController from './app/controllers/NotificationController';
 import AvaliableController from './app/controllers/AvaliableController';
 import CodigoController from './app/controllers/CodigoController';
 import BebidaController from './app/controllers/BebidaController';
+import ConsumoController from './app/controllers/ConsumoController';
 
 import TesteController from './app/controllers/TestesController';
 
@@ -68,6 +69,8 @@ routes.put('/api/notifications/:id', NotificationController.update);
 routes.post('/api/testes', TesteController.store);
 
 routes.post('/api/codigos', ValidateCodigoStore, CodigoController.store);
+
+routes.post('/api/consumo', ConsumoController.store);
 
 routes.use(sapper.middleware());
 

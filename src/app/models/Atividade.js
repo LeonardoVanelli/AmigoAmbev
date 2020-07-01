@@ -5,6 +5,7 @@ class Atividade extends Model {
     super.init(
       {
         created_at: Sequelize.DATE,
+        validado: Sequelize.BOOLEAN,
       },
       {
         sequelize,
