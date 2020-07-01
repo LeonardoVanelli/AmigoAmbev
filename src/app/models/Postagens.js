@@ -31,12 +31,10 @@ class Postagens extends Model {
       as: 'tipopostagem',
     });
 
-    /*
-    this.belongsToMany(models.Curtidas, {
-      through: 'postagens',
-      as: 'curtidas',
+    this.hasMany(models.Curtidas, {
       foreignKey: 'postagem_id',
-    });*/
+      as: 'curtidas',
+    });
   }
 }
 
