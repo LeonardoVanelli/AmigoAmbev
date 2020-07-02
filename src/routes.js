@@ -44,6 +44,7 @@ const bruteForce = new Brute(bruteStore);
 
 routes.post('/api/user', ValidateUserStore, UserController.store);
 routes.post('/api/session', bruteForce.prevent, SessionController.store);
+routes.post('/api/user/validaEmail', UserController.validaEmail);
 
 routes.use('/api', authMiddleware);
 routes.put('/api/user', UserController.update);

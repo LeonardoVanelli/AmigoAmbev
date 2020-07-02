@@ -12,6 +12,7 @@ class ProfileController {
         'telefone',
         'pontos',
         'hash_code',
+        'apelido',
         'created_at',
       ],
       include: [

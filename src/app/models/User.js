@@ -13,6 +13,7 @@ class User extends Model {
         hash_code: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
+        apelido: Sequelize.STRING,
       },
       {
         sequelize,
@@ -23,12 +24,22 @@ class User extends Model {
       if (user.password)
         // eslint-disable-next-line no-param-reassign
         user.password_hash = await bcrypt.hash(user.password, 8);
+    });
+
+    this.addHook('beforeCreate', async user => {
       // eslint-disable-next-line no-param-reassign
       user.hash_code = generateHash({
         length: 8,
         charset:
           'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_',
       });
+
+      const userNameHash = Math.random() * 99;
+      const firstName = user.name.split(' ')[0];
+
+      const duasPrimeirasLetras = firstName.substr(0, 2);
+      // eslint-disable-next-line no-param-reassign
+      user.apelido = ` ${firstName}.${duasPrimeirasLetras.toUpperCase()}${userNameHash.toFixed()}`;
     });
     return this;
   }
