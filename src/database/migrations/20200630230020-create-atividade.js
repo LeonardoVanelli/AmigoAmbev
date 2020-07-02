@@ -9,7 +9,7 @@ module.exports = {
       },
       tipo_processo_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'tipos_processos', key: 'id' },
+        references: { model: 'tipos_processos', key: 'processo_id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: false,

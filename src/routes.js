@@ -18,6 +18,8 @@ import AvaliableController from './app/controllers/AvaliableController';
 import CodigoController from './app/controllers/CodigoController';
 import BebidaController from './app/controllers/BebidaController';
 import ConsumoController from './app/controllers/ConsumoController';
+import ValidacaoController from './app/controllers/ValidacaoController';
+import ProfileController from './app/controllers/ProfileController';
 
 import TesteController from './app/controllers/TestesController';
 
@@ -72,8 +74,12 @@ routes.post('/api/testes', TesteController.store);
 routes.post('/api/codigos', ValidateCodigoStore, CodigoController.store);
 
 routes.post('/api/consumo', ConsumoController.store);
+routes.post('/api/validacao', ValidacaoController.store);
+routes.get('/api/validacao/:user_hash', ValidacaoController.index);
 
 routes.get('/api/Postagens', PostagemController.Show);
+
+routes.get('/api/profile/:user_id', ProfileController.index);
 
 routes.use(sapper.middleware());
 

@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      validado: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
+      processo_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        unique: true,
       },
       created_at: {
         type: Sequelize.DATE,
