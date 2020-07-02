@@ -6,6 +6,7 @@ class TipoPostagem extends Model {
       {
         nome: Sequelize.STRING,
         descricao: Sequelize.STRING,
+        tipo_postagem_id: Sequelize.INTEGER,
       },
       {
         sequelize,

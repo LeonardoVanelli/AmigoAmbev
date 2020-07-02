@@ -20,7 +20,7 @@ module.exports = {
       },
       tipo_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'tipo_postagems', key: 'id' },
+        references: { model: 'tipo_postagems', key: 'tipo_postagem_id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,

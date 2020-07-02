@@ -11,6 +11,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      tipo_postagem_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true,
+      },
       descricao: {
         type: Sequelize.STRING,
         allowNull: false,

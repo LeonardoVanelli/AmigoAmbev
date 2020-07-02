@@ -4,7 +4,7 @@ class Curtidas extends Model {
   static init(sequelize) {
     super.init(
       {
-        datahora: Sequelize.DATE,
+        data_hora: Sequelize.DATE,
       },
       {
         sequelize,

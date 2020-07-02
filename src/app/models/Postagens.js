@@ -5,7 +5,7 @@ class Postagens extends Model {
     super.init(
       {
         texto: Sequelize.STRING,
-        datahora: Sequelize.DATE,
+        data_hora: Sequelize.DATE,
       },
       {
         sequelize,
@@ -34,6 +34,11 @@ class Postagens extends Model {
     this.hasMany(models.Curtidas, {
       foreignKey: 'postagem_id',
       as: 'curtidas',
+    });
+
+    this.hasMany(models.Comentarios, {
+      foreignKey: 'postagem_id',
+      as: 'comentarios',
     });
   }
 }

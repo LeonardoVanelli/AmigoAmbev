@@ -29,6 +29,8 @@ import ValidateCodigoStore from './app/Validators/CodigoStore';
 
 import authMiddleware from './app/middleware/auth';
 import PostagemController from './app/controllers/PostagemController';
+import CurtidasController from './app/controllers/CurtidasController';
+import ComentariosController from './app/controllers/ComentariosController';
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -78,6 +80,11 @@ routes.post('/api/validacao', ValidacaoController.store);
 routes.get('/api/validacao/:user_hash', ValidacaoController.index);
 
 routes.get('/api/Postagens', PostagemController.Show);
+routes.put('/api/Postagens/:postagen_id', PostagemController.update);
+routes.post('/api/Postagens', PostagemController.store);
+
+routes.post('/api/Curtidas', CurtidasController.store);
+routes.post('/api/Comentarios', ComentariosController.store);
 
 routes.get('/api/profile/:user_id', ProfileController.index);
 
