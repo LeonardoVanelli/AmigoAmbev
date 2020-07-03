@@ -10,11 +10,11 @@ class CurtidasController {
           postagem_id,
           user_id,
         });
+
         return res.send({ postagem_id, user_id, data_hora });
       }
-      Curtidas.destroy({ where: { postagem_id, user_id } });
 
-      return res.send('Postagem excluida com sucesso');
+      return res.send('Curtida excluida com sucesso');
     } catch (error) {
       return res.status(400).send({ error, message: error.message });
     }

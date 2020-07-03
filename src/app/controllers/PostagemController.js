@@ -2,6 +2,7 @@ import Curtida from '../models/Curtidas';
 import Comentarios from '../models/Comentarios';
 import User from '../models/User';
 import Postagens from '../models/Postagens';
+import File from '../models/File';
 
 class PostagemController {
   async Show(req, res) {
@@ -38,6 +39,7 @@ class PostagemController {
               },
             ],
           },
+          { model: File, as: 'file', attributes: ['id', 'path', 'url'] },
         ],
       });
       return res.json(dados);
@@ -48,13 +50,27 @@ class PostagemController {
 
   async store(req, res) {
     try {
-      const { texto, user_id, tipo_id } = req.body;
-      const { data_hora } = await Postagens.create({
+      const { texto, user_id, tipo_id, imagem_id } = req.body;
+      const { id } = await Postagens.create({
         texto,
         user_id,
         tipo_id,
+        imagem_id,
       });
-      return res.send({ texto, user_id, data_hora });
+
+      const postagems = await Postagens.findByPk(id, {
+        attributes: ['data_hora', 'texto', 'id'],
+        include: [
+          { model: File, as: 'file', attributes: ['id', 'path', 'url'] },
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'name'],
+          },
+        ],
+      });
+
+      return res.send(postagems);
     } catch (error) {
       return res.status(400).send({ error, message: error.message });
     }

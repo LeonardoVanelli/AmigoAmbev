@@ -59,7 +59,7 @@ class UserController {
 
     if (user) return res.status(500).send({ error: 'E-mail já está em uso' });
 
-    return res.send(email);
+    return res.send({ email });
   }
 }
 
