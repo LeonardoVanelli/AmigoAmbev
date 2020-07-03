@@ -23,6 +23,7 @@ class RankingUsuarioController {
         });
         let posicao = 0;
         todosUsuarios.find(userUtilizado => {
+          // eslint-disable-next-line no-plusplus
           posicao++;
           return userUtilizado.id === req.userId;
         });
@@ -36,8 +37,7 @@ class RankingUsuarioController {
 
       return res.send({ rank: users });
     } catch (error) {
-      console.log(error);
-      res.status(500).send(error.messagem);
+      return res.status(500).send(error.messagem);
     }
   }
 }
