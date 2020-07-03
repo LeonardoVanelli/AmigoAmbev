@@ -15,7 +15,7 @@ class Estabelecimento extends Model {
       }
     );
 
-    this.addHook('beforeSave', async user => {
+    this.addHook('beforeCreate', async user => {
       // eslint-disable-next-line no-param-reassign
       user.hash_code = generateHash({
         length: 8,
