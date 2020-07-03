@@ -60,7 +60,7 @@ class ConsumoController {
 
       return res.send({ usuario });
     } catch (error) {
-      console.log(error);
+      return console.log(error);
     }
   }
 }
