@@ -39,16 +39,15 @@ class UserController {
 
     if (oldPassword && !(await user.checkPassword(oldPassword)))
       res.status(401).json('Passoword does not match');
-
     await user.update(req.body);
 
-    const { id, name, avatar, apelido } = await User.findByPk(req.userId, {
+    const { id, name, avatar, apelido, cpf } = await User.findByPk(req.userId, {
       include: [
         { model: File, as: 'avatar', attributes: ['id', 'path', 'url'] },
       ],
     });
 
-    return res.json({ id, name, email, avatar, apelido });
+    return res.json({ id, name, email, avatar, apelido, cpf });
   }
 
   async validaEmail(req, res) {

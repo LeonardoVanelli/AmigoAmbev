@@ -15,6 +15,7 @@ class User extends Model {
         password_hash: Sequelize.STRING,
         apelido: Sequelize.STRING,
         bar: Sequelize.BOOLEAN,
+        cpf: Sequelize.STRING,
       },
       {
         sequelize,
