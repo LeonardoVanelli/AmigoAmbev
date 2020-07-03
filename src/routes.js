@@ -20,6 +20,7 @@ import BebidaController from './app/controllers/BebidaController';
 import ConsumoController from './app/controllers/ConsumoController';
 import ValidacaoController from './app/controllers/ValidacaoController';
 import ProfileController from './app/controllers/ProfileController';
+import RankingUsuarioController from './app/controllers/RankingUsuarioController';
 
 import TesteController from './app/controllers/TestesController';
 
@@ -88,6 +89,8 @@ routes.post('/api/Curtidas', CurtidasController.store);
 routes.post('/api/Comentarios', ComentariosController.store);
 
 routes.get('/api/profile/:user_id', ProfileController.index);
+
+routes.get('/api/rankingUsuario', RankingUsuarioController.show);
 
 routes.use(sapper.middleware());
 
