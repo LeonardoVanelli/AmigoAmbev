@@ -1,3 +1,5 @@
+import { Op } from 'sequelize';
+
 import Curtida from '../models/Curtidas';
 import Comentarios from '../models/Comentarios';
 import User from '../models/User';
@@ -7,8 +9,18 @@ import File from '../models/File';
 class PostagemController {
   async Show(req, res) {
     try {
+      const { filtro } = req.query;
+
       const dados = await Postagens.findAll({
         attributes: ['id', 'texto'],
+        where: {
+          [Op.or]: [
+            {
+              texto: { [Op.iLike]: `%${filtro}%` },
+            },
+            { '$user.name$': { [Op.iLike]: `%${filtro}%` } },
+          ],
+        },
         include: [
           {
             model: User,
