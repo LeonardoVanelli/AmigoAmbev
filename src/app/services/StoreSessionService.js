@@ -8,7 +8,9 @@ class StoreSessionService {
   async run({ email, password }) {
     const user = await User.findOne({
       where: { email },
-      include: [{ model: File, as: 'avatar', attributes: ['id', 'url'] }],
+      include: [
+        { model: File, as: 'avatar', attributes: ['id', 'path', 'url'] },
+      ],
     });
 
     if (!user) throw new Error('user not found');
