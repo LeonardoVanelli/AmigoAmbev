@@ -1,4 +1,5 @@
 import Premios from '../models/Premios';
+import { Op } from 'sequelize';
 
 class PremiosController {
   async store(req, res) {
@@ -49,15 +50,13 @@ class PremiosController {
 
   async show(req, res) {
     try {
+      const dataAgora = new Date();
       const dados = await Premios.findAll({
-        attributes: [
-          'id',
-          'nome',
-          'descricao',
-          'data_inicio',
-          'data_fim',
-          'pontos',
-        ],
+        where: {
+          data_inicio: { [Op.lte]: dataAgora },
+          data_fim: { [Op.gte]: dataAgora },
+        },
+        attributes: ['id', 'nome', 'descricao', 'data_fim', 'pontos'],
       });
 
       return res.json(dados);
