@@ -4,7 +4,7 @@ class BebidaController {
   async Show(req, res) {
     try {
       const dados = await bebida.findAll({
-        attributes: ['id', 'nome'],
+        attributes: ['id', 'nome', 'pontos_bar', 'pontos_comercio'],
       });
       return res.json(dados);
     } catch (error) {
