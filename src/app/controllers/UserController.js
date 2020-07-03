@@ -22,7 +22,6 @@ class UserController {
 
       return res.json(session);
     } catch (error) {
-      console.log(error);
       return res.status(500).send(error);
     }
   }

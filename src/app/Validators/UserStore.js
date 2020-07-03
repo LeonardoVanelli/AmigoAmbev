@@ -8,7 +8,7 @@ export default async (req, res, next) => {
       password: Yup.string()
         .required()
         .min(6),
-      provider: Yup.boolean(),
+      bar: Yup.boolean(),
     });
 
     await schema.validate(req.body, { abortEarly: false });

@@ -21,6 +21,7 @@ import ConsumoController from './app/controllers/ConsumoController';
 import ValidacaoController from './app/controllers/ValidacaoController';
 import ProfileController from './app/controllers/ProfileController';
 import RankingUsuarioController from './app/controllers/RankingUsuarioController';
+import RankingBarController from './app/controllers/RankingBarController';
 
 import TesteController from './app/controllers/TestesController';
 
@@ -91,6 +92,7 @@ routes.post('/api/Comentarios', ComentariosController.store);
 routes.get('/api/profile/:user_id', ProfileController.index);
 
 routes.get('/api/rankingUsuario', RankingUsuarioController.show);
+routes.get('/api/rankingBar', RankingBarController.show);
 
 routes.use(sapper.middleware());
 

@@ -14,6 +14,7 @@ class User extends Model {
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
         apelido: Sequelize.STRING,
+        bar: Sequelize.BOOLEAN,
       },
       {
         sequelize,
@@ -34,12 +35,12 @@ class User extends Model {
           'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_',
       });
 
-      const userNameHash = Math.random() * 99;
+      const userNameHash = Math.random() * 1000;
       const firstName = user.name.split(' ')[0];
 
       const duasPrimeirasLetras = firstName.substr(0, 2);
       // eslint-disable-next-line no-param-reassign
-      user.apelido = ` ${firstName}.${duasPrimeirasLetras.toUpperCase()}${userNameHash.toFixed()}`;
+      user.apelido = `${firstName}.${duasPrimeirasLetras.toUpperCase()}${userNameHash.toFixed()}`;
     });
     return this;
   }
