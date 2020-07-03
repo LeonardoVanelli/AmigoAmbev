@@ -16,6 +16,7 @@ import TipoPostagem from '../app/models/TipoPostagem';
 import Postagens from '../app/models/Postagens';
 import Curtidas from '../app/models/Curtidas';
 import Comentarios from '../app/models/Comentarios';
+import Premios from '../app/models/Premios';
 
 const Models = [
   Appointment,
@@ -32,6 +33,7 @@ const Models = [
   Postagens,
   Curtidas,
   Comentarios,
+  Premios,
 ];
 
 class Database {

@@ -33,6 +33,9 @@ import authMiddleware from './app/middleware/auth';
 import PostagemController from './app/controllers/PostagemController';
 import CurtidasController from './app/controllers/CurtidasController';
 import ComentariosController from './app/controllers/ComentariosController';
+import EstabelecimentoController from './app/controllers/EstabelecimentoController';
+import EnderecoController from './app/controllers/EnderecoController';
+import PremiosController from './app/controllers/PremiosController';
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -90,9 +93,22 @@ routes.post('/api/Curtidas', CurtidasController.store);
 routes.post('/api/Comentarios', ComentariosController.store);
 
 routes.get('/api/profile/:user_id', ProfileController.index);
+routes.post('/api/Endereco', EnderecoController.store);
+
+routes.post('/api/Estabelecimento', EstabelecimentoController.store);
 
 routes.get('/api/rankingUsuario', RankingUsuarioController.show);
 routes.get('/api/rankingBar', RankingBarController.show);
+routes.get(
+  '/api/Estabelecimento/:estabelecimento_id',
+  EstabelecimentoController.index
+);
+
+routes.post('/api/Premios', PremiosController.store);
+routes.get('/api/Premios/:premio_id', PremiosController.index);
+routes.get('/api/Premios', PremiosController.show);
+
+routes.get('/api/profile/:user_id', ProfileController.index);
 
 routes.use(sapper.middleware());
 
