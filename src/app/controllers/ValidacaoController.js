@@ -63,7 +63,20 @@ class ValidacaoController {
         pontos: usuario.pontos + pontos,
       });
 
-      return res.send({ CervejasCadastradas: atividades.length });
+      await estabelecimento.update({
+        pontos: estabelecimento.pontos + pontos,
+      });
+
+      return res.send({
+        usuario: {
+          id: usuario.id,
+          name: usuario.nome,
+          pontos: usuario.pontos,
+          apelido: usuario.apelido,
+        },
+        CervejasCadastradas: atividades.length,
+        pontosArrecadados: pontos,
+      });
     } catch (error) {
       return res.status(500).send({ error: 'Algo deu errado' });
     }
