@@ -22,32 +22,46 @@ class UserController {
 
       return res.json(session);
     } catch (error) {
+      console.log(error);
       return res.status(500).send(error);
     }
   }
 
   async update(req, res) {
-    const { email, oldPassword } = req.body;
+    try {
+      const { email, oldPassword } = req.body;
 
-    const user = await User.findByPk(req.userId);
+      const user = await User.findByPk(req.userId);
 
-    if (user.email !== email) {
-      const existentUser = await User.findOne({ where: { email } });
-      if (existentUser)
-        return res.status(400).json({ error: 'email is already in use' });
+      if (email && user.email !== email) {
+        const existentUser = await User.findOne({
+          where: { email: user.email },
+        });
+        if (existentUser)
+          return res.status(400).json({ error: 'email is already in use' });
+      }
+
+      if (oldPassword && !(await user.checkPassword(oldPassword)))
+        res.status(401).json('Passoword does not match');
+      await user.update(req.body);
+
+      const {
+        id,
+        name,
+        avatar,
+        apelido,
+        cpf,
+        email: nemail,
+      } = await User.findByPk(req.userId, {
+        include: [
+          { model: File, as: 'avatar', attributes: ['id', 'path', 'url'] },
+        ],
+      });
+
+      return res.json({ id, name, nemail, avatar, apelido, cpf });
+    } catch (err) {
+      return res.status(500).send({ error: err.message });
     }
-
-    if (oldPassword && !(await user.checkPassword(oldPassword)))
-      res.status(401).json('Passoword does not match');
-    await user.update(req.body);
-
-    const { id, name, avatar, apelido, cpf } = await User.findByPk(req.userId, {
-      include: [
-        { model: File, as: 'avatar', attributes: ['id', 'path', 'url'] },
-      ],
-    });
-
-    return res.json({ id, name, email, avatar, apelido, cpf });
   }
 
   async validaEmail(req, res) {

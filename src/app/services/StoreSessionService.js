@@ -1,3 +1,4 @@
+import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
@@ -18,7 +19,14 @@ class StoreSessionService {
     if (!(await user.checkPassword(password)))
       throw new Error('Passoword does not match');
 
-    const { id, name, avatar, provider, apelido, bar } = user;
+    const { id, name, provider, apelido, bar } = user;
+    let { avatar } = user;
+
+    if (!avatar) {
+      avatar = {
+        url: `https://api.adorable.io/avatars/285/${apelido}.png`,
+      };
+    }
 
     const session = {
       user: {

@@ -4,12 +4,16 @@ class SessionController {
   async store(req, res) {
     const { email, password } = req.body;
 
-    const session = await StoreSessionService.run({
-      email,
-      password,
-    });
+    try {
+      const session = await StoreSessionService.run({
+        email,
+        password,
+      });
 
-    res.json(session);
+      res.json(session);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
   }
 }
 

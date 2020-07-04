@@ -1,46 +1,61 @@
+<script>
+  import SlideCard from '../front/components/SlideCard.svelte';
+  import { goto } from '@sapper/app';
+  import { scale } from 'svelte/transition';
+  import Client from '../front/components/Client.svelte';
+  import { onMount } from 'svelte';
+
+  import { user } from '../stores.js';
+
+  let userStatus = '';
+
+  onMount(async () => {
+    const userLogged = await localStorage.getItem('user');
+    if (userLogged !== null) {
+      const usuarioLogado = JSON.parse(userLogged);
+      $user = JSON.parse(userLogged);
+    }
+    userStatus = $user.client.status;
+    console.log($user);
+  });
+</script>
+
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+  .btn-container {
+    width: 60% !important;
+    left: 20%;
+    top: 23em;
+    position: absolute;
+    z-index: 10;
+  }
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+  .btn {
+    left: 0;
+  }
 </style>
 
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
+<div
+  class="container"
+  in:scale={{ opacity: 0, start: 0.5, delay: 600, duration: 300 }}
+  out:scale={{ opacity: 0, start: 1.3, delay: 300, duration: 300 }}>
 
-<h1>Né que funciona rapaz success!</h1>
+  {#if userStatus === ''}
+    <!-- slide card -->
+    <SlideCard />
 
-<figure>
-	<img alt='Success Kid' src='successkid.jpg'>
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
+    <!-- btn -->
+    <div class="btn-container">
+      <div on:click={() => goto('/register')} class="btn black shadow">
+        Cadastro
+      </div>
 
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+      <div on:click={() => goto('/login')} class="btn">Login</div>
+    </div>
+  {:else if userStatus === 'bar'}
+    pegadinha do malandro
+  {:else if userStatus === 'client'}
+    <!-- view client -->
+    <Client />
+  {/if}
+  <!-- container -->
+</div>

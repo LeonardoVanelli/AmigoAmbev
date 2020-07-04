@@ -36,6 +36,7 @@ import ComentariosController from './app/controllers/ComentariosController';
 import EstabelecimentoController from './app/controllers/EstabelecimentoController';
 import EnderecoController from './app/controllers/EnderecoController';
 import PremiosController from './app/controllers/PremiosController';
+import { nextTemplateToken } from 'sucrase/dist/parser/tokenizer';
 
 const routes = Router();
 const upload = multer(multerConfig);
