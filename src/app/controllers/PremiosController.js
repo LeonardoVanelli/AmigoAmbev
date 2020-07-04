@@ -1,5 +1,4 @@
 import Premios from '../models/Premios';
-import { Op } from 'sequelize';
 
 class PremiosController {
   async store(req, res) {
