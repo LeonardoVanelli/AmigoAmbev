@@ -13,11 +13,20 @@
     return res;
   };
 
-  const Like = async postagem_id => {
-    let like = await axios.post('/api/like', {
-      postagem_id,
-      user_id: user.client.id,
-    });
+  const Like = async (postagem_id, file) => {
+    let like = await axios.post(
+      '/api/Curtidas',
+      {
+        postagem_id,
+        user_id: $user.client.id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${$user.client.token}`,
+        },
+      }
+    );
+    console.log(file);
   };
 </script>
 
@@ -69,7 +78,7 @@
       <!-- footer -->
       <div class="card-footer">
         <!-- like -->
-        <div on:click={() => Like(item.id)} class="item-like">
+        <div on:click={este => Like(item.id, este)} class="item-like">
           <i class="material-icons">star</i>
           {item.curtidas.length}
         </div>

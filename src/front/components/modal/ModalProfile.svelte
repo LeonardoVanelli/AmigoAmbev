@@ -45,7 +45,25 @@
   };
 
   const refreshProfile = async () => {
-    //code
+    const { cpf, pass, email } = userClient;
+
+    const data = {
+      email,
+    };
+
+    if (pass !== '') data.password = pass;
+    if (cpf !== '') data.cpf = cpf;
+
+    const response = await axios.put('/api/user', data, {
+      headers: {
+        Authorization: `Bearer ${$user.client.token}`,
+      },
+    });
+
+    $user.client.email = response.data.nemail;
+    $user.client.cpf = response.data.cpf;
+
+    localStorage.setItem('user', JSON.stringify($user));
   };
 </script>
 
@@ -135,7 +153,11 @@
       <div class="box">
 
         <form enctype="multipart/form-data">
-          <input type="file" name="img" id="img" />
+          <input
+            on:change={data => changeImage(data)}
+            type="file"
+            name="img"
+            id="img" />
           <label for="img">
             <!-- img profile -->
             <div class="cover shadow">

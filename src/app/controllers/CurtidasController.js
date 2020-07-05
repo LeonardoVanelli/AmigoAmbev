@@ -5,7 +5,7 @@ class CurtidasController {
     try {
       const { postagem_id, user_id } = req.body;
 
-      const curdida = Curtidas.findOne({
+      const curdida = await Curtidas.findOne({
         where: { postagem_id, user_id },
       });
       if (!curdida) {

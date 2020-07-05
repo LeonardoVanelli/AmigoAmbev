@@ -27,13 +27,13 @@
         password: userLogin.pass,
       });
 
-      const { id, name, email, avatar, apelido, bar } = response.data.user;
+      const { id, name, email, avatar, apelido, bar, cpf } = response.data.user;
 
       $user.client.status = bar ? 'bar' : 'client';
       $user.client.id = id;
       $user.client.name = name;
       $user.client.email = email;
-      $user.client.cpf = '';
+      $user.client.cpf = cpf;
       $user.client.cover = avatar.url;
       $user.client.token = response.data.token;
 

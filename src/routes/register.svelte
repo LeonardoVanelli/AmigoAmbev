@@ -40,9 +40,11 @@
       $user.client.name = name;
       $user.client.email = email;
       $user.client.cpf = '';
-      $user.client.cover = '';
+      $user.client.cover = avatar.url;
 
-      $user.token = response.data.token;
+      $user.client.token = response.data.token;
+
+      localStorage.setItem('user', JSON.stringify($user));
 
       console.log($user);
       goto('/');
