@@ -4,6 +4,7 @@
   import ModalProfile from '../front/components/modal/ModalProfile.svelte';
   import ModalPontos from '../front/components/modal/ModalPontos.svelte';
   import ModalQr from '../front/components/modal/ModalQr.svelte';
+  import ModalPostFoto from '../front/components/modal/ModalPostFoto.svelte';
   import { modalSet } from '../stores';
   import { onMount } from 'svelte';
   import { goto } from '@sapper/app';
@@ -134,6 +135,9 @@
 {/if}
 {#if $modalSet.qrCode}
   <ModalQr />
+{/if}
+{#if $modalSet.postFoto}
+  <ModalPostFoto />
 {/if}
 
 <Navbar />

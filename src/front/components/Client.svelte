@@ -1,6 +1,7 @@
 <script>
   import Card from './Card.svelte';
   import Feed from './client/Feed.svelte';
+  import { modalSet } from '../../stores';
 </script>
 
 <style>
@@ -53,7 +54,7 @@
     </div>
 
     <!-- post img -->
-    <div class="btn-img">
+    <div class="btn-img" on:click={() => ($modalSet.postFoto = true)}>
       <i class="material-icons">photo_camera</i>
     </div>
 

@@ -24,6 +24,7 @@ import RankingUsuarioController from './app/controllers/RankingUsuarioController
 import RankingBarController from './app/controllers/RankingBarController';
 import SolicitaBrindeController from './app/controllers/SolicitaBrindeController';
 import ValidacaoBrindeController from './app/controllers/ValidacaoBrindeController';
+import FiltroUserController from './app/controllers/FiltroUserController';
 
 import TesteController from './app/controllers/TestesController';
 
@@ -117,6 +118,8 @@ routes.get('/api/conquistas/:user_id', ConquistasController.index);
 
 routes.post('/api/solicitaBrinde', SolicitaBrindeController.store);
 routes.post('/api/validacaoBrinde', ValidacaoBrindeController.store);
+
+routes.get('/api/filtroUser', FiltroUserController.show);
 
 routes.use(sapper.middleware());
 

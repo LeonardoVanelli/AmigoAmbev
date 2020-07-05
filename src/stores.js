@@ -22,4 +22,5 @@ export const modalSet = writable({
   profile: false,
   score: false,
   qrCode: false,
+  postFoto: false,
 });

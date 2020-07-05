@@ -1,5 +1,6 @@
 import User from '../models/User';
 import File from '../models/File';
+import Estabelecimento from '../models/Estabelecimento';
 
 import StoreSessionService from '../services/StoreSessionService';
 
@@ -13,7 +14,16 @@ class UserController {
       if (existentUser) {
         return res.status(400).json({ error: 'email is already in use' });
       }
-      const { email } = await User.create(req.body);
+      const { email, id } = await User.create(req.body);
+
+      if (req.body.bar) {
+        await Estabelecimento.create({
+          nome: 'bar',
+          telefone: '',
+          endereco: 1,
+          responsavel_id: id,
+        });
+      }
 
       const session = await StoreSessionService.run({
         email,

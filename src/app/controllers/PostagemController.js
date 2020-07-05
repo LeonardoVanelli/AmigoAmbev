@@ -12,7 +12,8 @@ class PostagemController {
       const { filtro } = req.query;
 
       const dados = await Postagens.findAll({
-        attributes: ['id', 'texto'],
+        attributes: ['id', 'texto', 'data_hora'],
+        order: [['created_at', 'desc']],
         where: {
           [Op.or]: [
             {
@@ -25,7 +26,7 @@ class PostagemController {
           {
             model: User,
             as: 'user',
-            attributes: ['id', 'name'],
+            attributes: ['id', 'name', 'bar'],
           },
           {
             model: Curtida,
