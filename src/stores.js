@@ -11,6 +11,8 @@ export const user = writable({
     email: '',
     cpf: '',
     cover: '',
+    pontos: 0,
+    hash_code: '',
     token: '',
   },
 });
@@ -18,4 +20,6 @@ export const user = writable({
 export const modalSet = writable({
   menu: false,
   profile: false,
+  score: false,
+  qrCode: false,
 });

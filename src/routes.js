@@ -36,7 +36,7 @@ import ComentariosController from './app/controllers/ComentariosController';
 import EstabelecimentoController from './app/controllers/EstabelecimentoController';
 import EnderecoController from './app/controllers/EnderecoController';
 import PremiosController from './app/controllers/PremiosController';
-import { nextTemplateToken } from 'sucrase/dist/parser/tokenizer';
+import ConquistasController from './app/controllers/ConquistasController';
 
 const routes = Router();
 const upload = multer(multerConfig);
@@ -110,6 +110,8 @@ routes.get('/api/Premios/:premio_id', PremiosController.index);
 routes.get('/api/Premios', PremiosController.show);
 
 routes.get('/api/profile/:user_id', ProfileController.index);
+
+routes.get('/api/conquistas/:user_id', ConquistasController.index);
 
 routes.use(sapper.middleware());
 

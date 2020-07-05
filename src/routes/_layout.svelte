@@ -2,6 +2,8 @@
   import Navbar from '../front/components/Navbar.svelte';
   import ModalMenu from '../front/components/modal/ModalMenu.svelte';
   import ModalProfile from '../front/components/modal/ModalProfile.svelte';
+  import ModalPontos from '../front/components/modal/ModalPontos.svelte';
+  import ModalQr from '../front/components/modal/ModalQr.svelte';
   import { modalSet } from '../stores';
   import { onMount } from 'svelte';
   import { goto } from '@sapper/app';
@@ -126,6 +128,12 @@
 {/if}
 {#if $modalSet.profile}
   <ModalProfile />
+{/if}
+{#if $modalSet.score}
+  <ModalPontos />
+{/if}
+{#if $modalSet.qrCode}
+  <ModalQr />
 {/if}
 
 <Navbar />

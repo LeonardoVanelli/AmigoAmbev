@@ -19,7 +19,7 @@ class StoreSessionService {
     if (!(await user.checkPassword(password)))
       throw new Error('Passoword does not match');
 
-    const { id, name, provider, apelido, bar } = user;
+    const { id, name, provider, apelido, bar, hash_code, pontos } = user;
     let { avatar } = user;
 
     if (!avatar) {
@@ -37,6 +37,8 @@ class StoreSessionService {
         avatar,
         apelido,
         bar,
+        hash_code,
+        pontos,
       },
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,

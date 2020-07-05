@@ -27,7 +27,17 @@
         password: userLogin.pass,
       });
 
-      const { id, name, email, avatar, apelido, bar, cpf } = response.data.user;
+      const {
+        id,
+        name,
+        email,
+        avatar,
+        apelido,
+        bar,
+        cpf,
+        pontos,
+        hash_code,
+      } = response.data.user;
 
       $user.client.status = bar ? 'bar' : 'client';
       $user.client.id = id;
@@ -36,6 +46,8 @@
       $user.client.cpf = cpf;
       $user.client.cover = avatar.url;
       $user.client.token = response.data.token;
+      $user.client.pontos = pontos;
+      $user.client.hash_code = hash_code;
 
       console.log($user);
       localStorage.setItem('user', JSON.stringify($user));

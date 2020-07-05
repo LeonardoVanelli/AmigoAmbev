@@ -21,6 +21,7 @@
     name: '',
     email: '',
     pass: '',
+    bar: false,
   };
 
   let loading = false;
@@ -34,13 +35,24 @@
         password: newUser.pass,
       });
 
-      const { id, name, email, avatar, apelido, bar } = response.data.user;
+      const {
+        id,
+        name,
+        email,
+        avatar,
+        apelido,
+        bar,
+        pontos,
+        hash_code,
+      } = response.data.user;
       $user.client.status = bar ? 'bar' : 'client';
       $user.client.id = id;
       $user.client.name = name;
       $user.client.email = email;
       $user.client.cpf = '';
       $user.client.cover = avatar.url;
+      $user.client.pontos = pontos;
+      $user.client.hash_code = hash_code;
 
       $user.client.token = response.data.token;
 
@@ -66,6 +78,11 @@
       labelEmail = 'Ops! Esse e-mail já está em uso.';
     }
     loading = false;
+  };
+
+  const changeType = async bar => {
+    newUser.bar = bar;
+    view = 'name';
   };
 </script>
 
@@ -115,12 +132,12 @@
 
       <div class="contaier">
 
-        <div on:click={() => goto('/')} class="btn black">
+        <div on:click={() => changeType(true)} class="btn black">
           Sou um estabelecimento
         </div>
 
         <!-- user client -->
-        <div on:click={() => (view = 'name')} class="btn black">
+        <div on:click={() => changeType(false)} class="btn black">
           Sou um cliente
         </div>
 

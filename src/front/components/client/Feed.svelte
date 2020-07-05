@@ -2,18 +2,41 @@
   import axios from 'axios';
   import Card from '../Card.svelte';
   import { modalSet, user } from '../../../stores';
+  import { onMount } from 'svelte';
 
-  let post = async () => {
+  let posts = [];
+
+  onMount(async () => {
     let res = await axios.get(`/api/Postagens?filtro`, {
       headers: {
         Authorization: `Bearer ${$user.client.token}`,
       },
     });
-    console.log(res.data);
-    return res;
-  };
+    posts = [...res.data];
+    console.log(posts);
+  });
 
-  const Like = async (postagem_id, file) => {
+  const Like = async postagem_id => {
+    const post = posts.find(post => post.id === postagem_id);
+
+    const contemCurtida = post.curtidas.find(
+      curtida => (curtida.user.id = $user.client.id)
+    );
+
+    if (contemCurtida) {
+      post.curtidas.splice(0, 1);
+    } else {
+      post.curtidas.push({
+        user: {
+          id: $user.client.id,
+          name: $user.client.name,
+        },
+      });
+    }
+
+    const index = posts.indexOf(post);
+    posts.splice(index, 1);
+    posts = [...posts, post];
     let like = await axios.post(
       '/api/Curtidas',
       {
@@ -26,7 +49,6 @@
         },
       }
     );
-    console.log(file);
   };
 </script>
 
@@ -67,32 +89,28 @@
   }
 </style>
 
-{#await post()}
-  carregando
-{:then e}
-  {#each e.data as item}
-    <Card mTop="2" color="white">
-      <!-- title/legend -->
-      <div class="post-title font">{item.texto}</div>
+{#each posts as item}
+  <Card mTop="2" color="white">
+    <!-- title/legend -->
+    <div class="post-title font">{item.texto}</div>
 
-      <!-- footer -->
-      <div class="card-footer">
-        <!-- like -->
-        <div on:click={este => Like(item.id, este)} class="item-like">
-          <i class="material-icons">star</i>
-          {item.curtidas.length}
-        </div>
-
-        <!-- username -->
-        <div class="item-username">{item.user.name}</div>
-
-        <!-- comments -->
-        <div class="item-comments">
-          <i class="material-icons">message</i>
-        </div>
-
-        <!-- card footer -->
+    <!-- footer -->
+    <div class="card-footer">
+      <!-- like -->
+      <div on:click={este => Like(item.id)} class="item-like">
+        <i class="material-icons">star</i>
+        {item.curtidas.length}
       </div>
-    </Card>
-  {/each}
-{/await}
+
+      <!-- username -->
+      <div class="item-username">{item.user.name}</div>
+
+      <!-- comments -->
+      <div class="item-comments">
+        <i class="material-icons">message</i>
+      </div>
+
+      <!-- card footer -->
+    </div>
+  </Card>
+{/each}

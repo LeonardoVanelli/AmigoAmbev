@@ -7,14 +7,24 @@
   import { user } from '../../../stores';
 
   const btn = e => {
-    goto(e);
     $modalSet.menu = false;
   };
 
   const desconect = async () => {
-    await localStorage.removeItem('user');
+    $modalSet.menu = false;
+    $user.client.status = '';
+    $user.client.id = 0;
+    $user.client.name = '';
+    $user.client.email = '';
+    $user.client.cpf = '';
+    $user.client.cover = '';
+    $user.client.pontos = 0;
+    $user.client.hash_code = '';
 
-    goto('/');
+    $user.client.token = '';
+
+    await localStorage.setItem('user', JSON.stringify($user));
+    goto('/login');
   };
 </script>
 
@@ -44,7 +54,7 @@
 
   .btn i {
     padding: 20px;
-    background: #101010;
+    background: #e02626;
     border-radius: 100%;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.55);
   }
@@ -70,13 +80,27 @@
       <!-- content -->
       <div class="box">
         <!-- feed -->
-        <div class="btn flat" on:click={() => btn('/')}>Feed</div>
+        <div class="btn flat" on:click={() => btn()}>Feed</div>
 
         <!-- Pontos -->
-        <div class="btn flat" on:click={() => btn('/')}>Pontos</div>
+        <div
+          class="btn flat"
+          on:click={() => {
+            $modalSet.score = true;
+            btn();
+          }}>
+          Pontos
+        </div>
 
         <!-- Meu QR -->
-        <div class="btn flat" on:click={() => btn('/')}>Meu QR</div>
+        <div
+          class="btn flat"
+          on:click={() => {
+            $modalSet.qrCode = true;
+            btn();
+          }}>
+          Meu QR Code
+        </div>
 
         <!-- Desconectar -->
         <div class="btn flat" on:click={() => desconect()}>Desconectar</div>
