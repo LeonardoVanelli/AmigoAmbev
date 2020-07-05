@@ -32,6 +32,10 @@ class Atividade extends Model {
       foreignKey: 'tipo_processo_id',
       as: 'tipo_processo',
     });
+    this.belongsTo(models.Premios, {
+      foreignKey: 'premio_id',
+      as: 'premio',
+    });
   }
 }
 

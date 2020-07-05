@@ -22,6 +22,8 @@ import ValidacaoController from './app/controllers/ValidacaoController';
 import ProfileController from './app/controllers/ProfileController';
 import RankingUsuarioController from './app/controllers/RankingUsuarioController';
 import RankingBarController from './app/controllers/RankingBarController';
+import SolicitaBrindeController from './app/controllers/SolicitaBrindeController';
+import ValidacaoBrindeController from './app/controllers/ValidacaoBrindeController';
 
 import TesteController from './app/controllers/TestesController';
 
@@ -112,6 +114,9 @@ routes.get('/api/Premios', PremiosController.show);
 routes.get('/api/profile/:user_id', ProfileController.index);
 
 routes.get('/api/conquistas/:user_id', ConquistasController.index);
+
+routes.post('/api/solicitaBrinde', SolicitaBrindeController.store);
+routes.post('/api/validacaoBrinde', ValidacaoBrindeController.store);
 
 routes.use(sapper.middleware());
 
