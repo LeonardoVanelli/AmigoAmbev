@@ -46,7 +46,7 @@ class ValidacaoBrindeController {
       });
 
       await user.update({
-        pontos: (user.pontos = premio.pontos),
+        pontos: user.pontos - premio.pontos,
       });
 
       await estabelecimento.update({
@@ -55,8 +55,7 @@ class ValidacaoBrindeController {
 
       res.send({ user, premio });
     } catch (err) {
-      console.log(err);
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
   }
 }

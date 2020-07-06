@@ -5,9 +5,12 @@
   import ModalPontos from '../front/components/modal/ModalPontos.svelte';
   import ModalQr from '../front/components/modal/ModalQr.svelte';
   import ModalPostFoto from '../front/components/modal/ModalPostFoto.svelte';
+  import ModalSearch from '../front/components/modal/ModalSearch.svelte';
+  import ModalPostStatus from '../front/components/modal/ModalPostStatus.svelte';
   import { modalSet } from '../stores';
   import { onMount } from 'svelte';
   import { goto } from '@sapper/app';
+  import ModalScanner from '../front/components/modal/ModalScanner.svelte';
 
   import { user } from '../stores';
 
@@ -138,6 +141,15 @@
 {/if}
 {#if $modalSet.postFoto}
   <ModalPostFoto />
+{/if}
+{#if $modalSet.postStatus}
+  <ModalPostStatus />
+{/if}
+{#if $modalSet.search}
+  <ModalSearch />
+{/if}
+{#if $modalSet.scannerBar}
+  <ModalScanner />
 {/if}
 
 <Navbar />

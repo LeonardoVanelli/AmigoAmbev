@@ -19,7 +19,7 @@
         texto: textarea,
         imagem_id: img,
         user_id: $user.client.id,
-        tipo_id: 1,
+        tipo_id: $user.client.status === 'bar' ? 2 : 1,
       },
       {
         headers: {

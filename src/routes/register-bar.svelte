@@ -7,80 +7,65 @@
 
   import { user } from '../stores.js';
 
-  //view card
-  let view = 'whatUser';
-
-  //input type by pass
-  let inputPass = 'type="password"';
-
-  //label email
-  let labelEmail = 'Qual o seu e-mail?'; //Ops esse e-mail já está em uso.
+  let view = 'name';
 
   //new user obj
   let newUser = {
     name: '',
     email: '',
     pass: '',
-    bar: false,
   };
-
-  let loading = false;
 
   const addUser = async () => {
-    try {
-      loading = true;
-      let response = await axios.post('/api/user', {
-        name: newUser.name,
-        email: newUser.email,
-        password: newUser.pass,
-      });
+    let response = await axios.post('/api/user', {
+      name: newUser.name,
+      email: newUser.email,
+      password: newUser.pass,
+      bar: true,
+    });
 
-      const {
-        id,
-        name,
-        email,
-        avatar,
-        apelido,
-        bar,
-        pontos,
-        hash_code,
-      } = response.data.user;
-      $user.client.status = bar ? 'bar' : 'client';
-      $user.client.id = id;
-      $user.client.name = name;
-      $user.client.email = email;
-      $user.client.cpf = '';
-      $user.client.cover = avatar.url;
-      $user.client.pontos = pontos;
-      $user.client.hash_code = hash_code;
+    const {
+      id,
+      name,
+      email,
+      avatar,
+      apelido,
+      bar,
+      pontos,
+      hash_code,
+    } = response.data.user;
+    $user.client.status = bar ? 'bar' : 'client';
+    $user.client.id = id;
+    $user.client.name = name;
+    $user.client.email = email;
+    $user.client.cpf = '';
+    $user.client.cover = avatar.url;
+    $user.client.pontos = pontos;
+    $user.client.hash_code = hash_code;
 
-      $user.client.token = response.data.token;
+    $user.client.token = response.data.token;
 
-      localStorage.setItem('user', JSON.stringify($user));
+    localStorage.setItem('user', JSON.stringify($user));
 
-      goto('/');
-    } catch (error) {}
-    loading = false;
+    goto('/');
+    console.log($user);
   };
 
-  const validaEmail = async () => {
+  const validEmail = async () => {
     try {
-      loading = true;
-      const valida = await axios.post('/api/user/Validaemail', {
+      console.log('valida');
+      let email = await axios.post('/api/user/validaEmail', {
         email: newUser.email,
       });
-
+      console.log(email);
       view = 'pass';
     } catch (error) {
-      labelEmail = 'Ops! Esse e-mail já está em uso.';
+      console.log(error);
     }
-    loading = false;
   };
 
-  const changeType = async bar => {
-    newUser.bar = bar;
-    view = 'name';
-  };
+  //label view email
+  let labelEmail = 'Qual o seu e-mail?'; //O e-mail já existe
 </script>
 
 <style>
@@ -110,44 +95,20 @@
     margin-right: 10px;
     color: #feffc9 !important;
   }
-
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 </style>
 
 <div
   class="container"
   in:scale={{ opacity: 0, start: 0.5, delay: 600, duration: 300 }}
   out:scale={{ opacity: 0, start: 1.3, delay: 300, duration: 300 }}>
-  {#if view === 'whatUser'}
-    <Card top="5">
-      <!-- title -->
-      <div class="title font">Quem é você?</div>
 
-      <div class="contaier">
-
-        <div on:click={() => goto('/register-bar')} class="btn black">
-          Sou um estabelecimento
-        </div>
-
-        <!-- user client -->
-        <div on:click={() => changeType(false)} class="btn black">
-          Sou um cliente
-        </div>
-
-        <!-- container -->
-      </div>
-    </Card>
-  {:else if view === 'name'}
+  {#if view === 'name'}
     <Card top="5">
       <!-- title -->
       <div class="title font">Cadastro</div>
 
       <!-- label -->
-      <p>Qual o seu nome?</p>
+      <p>Nome do estabelecimento</p>
 
       <div class="contaier">
         <!-- name -->
@@ -187,16 +148,11 @@
         <!-- btn next -->
         {#if newUser.email.length > 9}
           <div
-            on:click={validaEmail}
+            on:click={validEmail}
             class="btn black"
             in:scale={{ opacity: 0, start: 0.5, delay: 200, duration: 200 }}>
-
-            {#if loading}
-              <div class="spiner" />
-            {:else}
-              Avançar
-              <i class="material-icons">arrow_forward</i>
-            {/if}
+            Avançar
+            <i class="material-icons">arrow_forward</i>
           </div>
         {/if}
 
@@ -226,15 +182,10 @@
         {#if newUser.pass.length >= 6}
           <div
             on:click={addUser}
-            class="btn black center"
+            class="btn black"
             in:scale={{ opacity: 0, start: 0.5, delay: 300, duration: 300 }}>
-
-            {#if loading}
-              <div class="spiner" />
-            {:else}
-              Finalizar
-              <i class="material-icons">check</i>
-            {/if}
+            Finlizar
+            <i class="material-icons">check</i>
           </div>
         {/if}
 

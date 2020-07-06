@@ -3,6 +3,7 @@
   import { goto } from '@sapper/app';
   import { scale } from 'svelte/transition';
   import Client from '../front/components/Client.svelte';
+  import Bar from '../front/components/Bar.svelte';
   import { onMount } from 'svelte';
 
   import { user } from '../stores.js';
@@ -52,7 +53,8 @@
       <div on:click={() => goto('/login')} class="btn">Login</div>
     </div>
   {:else if userStatus === 'bar'}
-    pegadinha do malandro
+    <!--pegadinha do malandro -->
+    <Bar />
   {:else if userStatus === 'client'}
     <!-- view client -->
     <Client />

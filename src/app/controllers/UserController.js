@@ -20,7 +20,7 @@ class UserController {
         await Estabelecimento.create({
           nome: 'bar',
           telefone: '',
-          endereco: 1,
+          endereco_id: 1,
           responsavel_id: id,
         });
       }
@@ -45,7 +45,7 @@ class UserController {
 
       if (email && user.email !== email) {
         const existentUser = await User.findOne({
-          where: { email: user.email },
+          where: { email },
         });
         if (existentUser)
           return res.status(400).json({ error: 'email is already in use' });

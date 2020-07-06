@@ -49,10 +49,8 @@
       $user.client.pontos = pontos;
       $user.client.hash_code = hash_code;
 
-      console.log($user);
       localStorage.setItem('user', JSON.stringify($user));
 
-      console.log($user);
       goto('/');
     } catch {
       loginFailure = true;

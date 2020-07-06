@@ -41,7 +41,6 @@
     );
 
     $user.client.cover = updatedUser.data.avatar.url;
-    console.log($user);
   };
 
   const refreshProfile = async () => {
@@ -64,6 +63,7 @@
     $user.client.cpf = response.data.cpf;
 
     localStorage.setItem('user', JSON.stringify($user));
+    $modalSet.profile = false;
   };
 </script>
 

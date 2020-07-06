@@ -7,6 +7,7 @@
 <style>
   p {
     font-size: 0.9em;
+    margin-top: 2.3em !important;
     margin: 1.8em 0;
     text-align: center;
   }
@@ -44,13 +45,13 @@
 </style>
 
 <Card color="black" top="3">
-  <p>Compartilhe um momento</p>
+  <p>Scanner - Evento - Pesquisa</p>
 
   <!-- buttons -->
   <div class="post-buttons">
-    <!-- post text -->
-    <div class="btn-text" on:click={() => ($modalSet.postStatus = true)}>
-      <i class="material-icons">edit</i>
+    <!-- scanner -->
+    <div class="btn-text" on:click={() => ($modalSet.scannerBar = true)}>
+      <i class="material-icons">crop_free</i>
     </div>
 
     <!-- post img -->

@@ -17,10 +17,17 @@ export const user = writable({
   },
 });
 
+//id for friends the user
+export const idFriends = writable(0);
+
 export const modalSet = writable({
   menu: false,
   profile: false,
   score: false,
   qrCode: false,
   postFoto: false,
+  postStatus: false,
+  search: false,
+  friends: false,
+  scannerBar: false,
 });
