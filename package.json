@@ -39,7 +39,7 @@
     "polka": "next",
     "random-hash": "^4.0.1",
     "rate-limit-redis": "^1.6.0",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "sequelize": "^5.15.2",
     "sirv": "^0.4.0",
     "svelte-qrcode": "^0.0.2",
